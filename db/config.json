@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": null,
+    "password": null,
+    "database": "todoapp",
+    "host": "localhost",
+    "dialect": "sqlite",
+    "storage": "./todoDB.sqlite"
+  }
+}

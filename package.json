@@ -1,0 +1,48 @@
+{
+  "name": "yellowant-sample-javascript-app",
+  "version": "1.0.0",
+  "description": "YellowAnt Sample Express App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon --exec babel-node --presets env index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yellowanthq/yellowant-sample-javascript-app.git"
+  },
+  "keywords": [
+    "yellowant",
+    "sample",
+    "app",
+    "todo"
+  ],
+  "author": "Manik Singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yellowanthq/yellowant-sample-javascript-app/issues"
+  },
+  "homepage": "https://github.com/yellowanthq/yellowant-sample-javascript-app#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^4.38.0",
+    "sequelize-cli": "^4.0.0",
+    "sqlite3": "^4.0.2",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^1.18.3"
+  }
+}
