@@ -3,9 +3,9 @@
  *
  * An instance of a todo item for a user
  *
- * @attribute {String} title header for the todo item
- * @attribute {String} description details about the todo item
- * @attribute {models.User} userId owner's user ID of this todo item
+ * @arg {models.User} UserId owner's user ID of this todo item
+ * @arg {String} title header for the todo item
+ * @arg {String} description details about the todo item
  */
 module.exports = function(sequelize, Sequelize) {
   const Todo = sequelize.define("Todo", {
