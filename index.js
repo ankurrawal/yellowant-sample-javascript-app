@@ -4,7 +4,8 @@ const passport = require("passport");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const env = require("dotenv").load();
-var exphbs = require("express-handlebars");
+const exphbs = require("express-handlebars");
+const SQLiteStore = require('connect-sqlite3')(session);
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 
 // For Passport
 app.use(session({
+  store: new SQLiteStore,
   secret: '1357e0bc-46c6-413b-b30b-3f487de1d16b',
   resave: true,
   saveUninitialized: true
