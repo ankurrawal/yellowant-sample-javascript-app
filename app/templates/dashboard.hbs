@@ -9,6 +9,23 @@
   <h2>Dashboard</h2>
   <a href="/create-new-integration"><button>Create New Integration</button></a>
   <br /><br />
+  <table>
+    <thead><tr>
+      <th>YellowAnt User ID</th>
+      <th>YellowAnt Team</th>
+      <th>Integration ID</th>
+      <th>Integration Invoke Name</th>
+    </tr></thead>
+    <tbody>
+      {{#each userIntegrations}}<tr>
+        <td>{{yellowantUserId}}</td>
+        <td>{{yellowantTeamSubdomain}}</td>
+        <td>{{yellowantIntegrationId}}</td>
+        <td>{{yellowantIntegrationInvokeName}}</td>
+      </tr>{{/each}}
+    </tbody>
+  </table>
+  <br /><br />
   <div><a href="/logout">Logout</a></div>
 </body>
 

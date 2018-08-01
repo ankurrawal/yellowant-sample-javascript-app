@@ -1,3 +1,8 @@
+const models = require("../db/models");
+let {
+  YellowAntIntegration
+} = models;
+
 var exports = module.exports = {}
 
 exports.signup = function(req, res) {
@@ -14,6 +19,9 @@ exports.logout = function(req, res) {
   });
 }
 
-exports.dashboard = function(req, res) {
-  res.render('dashboard');
+exports.dashboard = async function(req, res) {
+  const userIntegrations = await YellowAntIntegration.findAll({where: {UserId: req.user.id }});
+  res.render('dashboard', {
+    userIntegrations
+  });
 }

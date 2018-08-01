@@ -86,3 +86,10 @@ module.exports.yellowantOAuthRedirect = async function (req, res) {
   // to each YA user integration.
   res.redirect("/");
 }
+
+/**
+ * Receive user commands from YA
+ */
+module.exports.yellowantAPI = async function (req, res) {
+
+}
