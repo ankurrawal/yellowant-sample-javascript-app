@@ -36,7 +36,8 @@
     "sequelize": "^4.38.0",
     "sequelize-cli": "^4.0.0",
     "sqlite3": "^4.0.2",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "yellowant-sdk": "0.0.25"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
