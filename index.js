@@ -1,11 +1,13 @@
 const express = require("express");
-const uuid = require("uuid/v4");
 const passport = require("passport");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const env = require("dotenv").load();
 const exphbs = require("express-handlebars");
 const SQLiteStore = require('connect-sqlite3')(session);
+
+const middlewares = require("./app/middlewares");
+const yellowantViews = require("./app/yellowant-views");
 
 const app = express();
 
@@ -24,14 +26,9 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 // For Handlebars
-app.set("views", "./app/views")
+app.set("views", "./app/templates")
 app.engine("hbs", exphbs({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
-
-app.get("/", (req, res) => {
-  console.log(req.sessionID);
-  res.send("You're at the homepage");
-});
 
 //Models
 var models = require("./db/models");
@@ -47,6 +44,9 @@ models.sequelize.sync()
   .then(function() { console.log("Connection to database established successfully."); })
   .catch(function(err) { console.log(err, "Something went wrong with the Database Update!"); });
 
+/** VIEWS */
+app.get("/create-new-integration", middlewares.isLoggedIn, yellowantViews.requestYellowAntOAuthCode);
+app.get("/yellowant-oauth-redirect", middlewares.isLoggedIn, yellowantViews.yellowantOAuthRedirect);
 
 const PORT = 4000;
 app.listen(PORT, () => { console.log(`Listening on localhost:${PORT}`); });
