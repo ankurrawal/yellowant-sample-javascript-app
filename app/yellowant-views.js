@@ -7,6 +7,7 @@ let {
   YellowAntRedirectState,
   User
 } = models;
+const createMessage = require("./CommandCenter");
 
 /**
  * Initiate the creation of a new user integration on YA
@@ -47,7 +48,7 @@ module.exports.yellowantOAuthRedirect = async function (req, res) {
   const state = req.query.state;
 
   // fetch user with the help of state
-  const yellowantRedirectState = await YellowAntRedirectState.findOne({ where: { state }});
+  const yellowantRedirectState = await YellowAntRedirectState.findOne({ where: { state } });
   const user = await User.findById(yellowantRedirectState.UserId);
 
   // init yellowant SDK client
@@ -91,5 +92,20 @@ module.exports.yellowantOAuthRedirect = async function (req, res) {
  * Receive user commands from YA
  */
 module.exports.yellowantAPI = async function (req, res) {
+  const data = JSON.parse(req.body.data);
 
+  // check verification token from YA
+  if (data.verification_token !== process.env.YA_VERIFICATION_TOKEN) {
+    res.status(403).send("You are not authorized");
+    return;
+  }
+
+  const yellowantIntegrationId = data.application;
+  const commandName = data.function_name;
+  const args = data.args;
+
+
+  const message = await createMessage(yellowantIntegrationId, commandName, args);
+
+  res.json(message.toJSON());
 }

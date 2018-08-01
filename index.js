@@ -46,7 +46,8 @@ models.sequelize.sync()
 
 /** VIEWS */
 app.get("/create-new-integration", middlewares.isLoggedIn, yellowantViews.requestYellowAntOAuthCode);
-app.get("/yellowant-oauth-redirect", middlewares.isLoggedIn, yellowantViews.yellowantOAuthRedirect);
+app.get("/yellowant-oauth-redirect", yellowantViews.yellowantOAuthRedirect);
+app.post("/yellowant-api", yellowantViews.yellowantAPI);
 
 const PORT = 4000;
 app.listen(PORT, () => { console.log(`Listening on localhost:${PORT}`); });

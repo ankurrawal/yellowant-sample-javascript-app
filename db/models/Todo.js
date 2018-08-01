@@ -3,7 +3,7 @@
  *
  * An instance of a todo item for a user
  *
- * @arg {models.User} UserId owner's user ID of this todo item
+ * @arg {models.YellowAntIntegration} YellowAntIntegrationId owner's integration ID for this todo item
  * @arg {String} title header for the todo item
  * @arg {String} description details about the todo item
  */
@@ -23,7 +23,7 @@ module.exports = function(sequelize, Sequelize) {
     }
   });
   Todo.associate = function(models) {
-    Todo.belongsTo(models.User, { onDelete: "CASCADE" });
+    Todo.belongsTo(models.YellowAntIntegration, { onDelete: "CASCADE" });
   };
 
   return Todo;
