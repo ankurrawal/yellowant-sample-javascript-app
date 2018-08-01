@@ -1,24 +1,22 @@
-var controller = require('./controllers');
+const controller = require('./controllers');
+const middlewares = require("./middlewares");
+
+const isLoggedIn = middlewares.isLoggedIn;
 
 module.exports = function (app, passport) {
   app.get('/signup', controller.signup);
   app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/dashboard',
+    successRedirect: '/',
     failureRedirect: '/signup'
   }));
 
   app.get('/signin', controller.signin);
   app.post('/signin', passport.authenticate('local-signin', {
-    successRedirect: '/dashboard',
+    successRedirect: '/',
     failureRedirect: '/signin'
   }));
 
   app.get('/logout', controller.logout);
 
-  app.get('/dashboard', isLoggedIn, controller.dashboard);
-
-  function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) return next();
-    res.redirect('/signin');
-  }
+  app.get('/', isLoggedIn, controller.dashboard);
 }
